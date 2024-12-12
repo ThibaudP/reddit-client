@@ -16,7 +16,7 @@ function VoteBlock({ upVote, downVote, score, vote }) {
   };
 
   return (
-    <div id="vote-block" className="flex flex-col min-w-16 items-center">
+    <div id="vote-block" className="flex flex-col min-w-16 pr-2 items-center">
       {vote !== 1 && (
         <BiUpvote
           size={25}

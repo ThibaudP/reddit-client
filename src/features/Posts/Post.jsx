@@ -47,43 +47,59 @@ function Post({ post, isLoading }) {
 
   return (
     <>
-      <div className="p-4 pl-5 pr-10 shadow-xl md:ml-4 md:mr-4 mb-4 sm:ml-0 sm:mr-0 bg-white flex justify-start rounded-lg">
-        <VoteBlock
-          upVote={upVote}
-          downVote={downVote}
-          score={score}
-          vote={vote}
-        />
-        <div className="pl-2 w-full">
-          <p className="text-sm">
-            <Link to={`r/${post.subreddit}`}>r/{post.subreddit}</Link>
-          </p>
-          <h2 className="text-lg font-semibold">
-            <a
-              href={
-                post.post_hint === 'link'
-                  ? post.url
-                  : `https://www.reddit.com/${post.permalink}`
-              }
-            >
-              {post.title}
-            </a>
-          </h2>
-          <p className="text-sm">{post.selftext}</p>
-          {post.post_hint == 'image' && (
-            <img src={post.url} className="object-contain max-w-xl" />
-          )}
-          {post.is_video && (
-            <video src={post.media.reddit_video.fallback_url} controls></video>
-          )}
+      <div className="p-4 pl-5 pr-10 shadow-xl md:ml-4 md:mr-4 mb-4 sm:ml-0 sm:mr-0 bg-white flex flex-col justify-start rounded-lg">
+        <div className="flex">
+          <VoteBlock
+            upVote={upVote}
+            downVote={downVote}
+            score={score}
+            vote={vote}
+          />
+          <div className="w-full">
+            <p className="text-sm">
+              <Link to={`r/${post.subreddit}`}>r/{post.subreddit}</Link>
+            </p>
+            <h2 className="text-lg font-semibold">
+              <a
+                href={
+                  post.post_hint === 'link'
+                    ? post.url
+                    : `https://www.reddit.com/${post.permalink}`
+                }
+              >
+                {post.title}
+              </a>
+            </h2>
+            <p className="text-sm">{post.selftext}</p>
+            {post.post_hint == 'image' && (
+              <img src={post.url} className="object-contain max-w-xl" />
+            )}
+            {post.is_video && (
+              <video
+                src={post.media.reddit_video.fallback_url}
+                controls
+              ></video>
+            )}
+            {post.post_hint === 'link' && (
+              <a
+                href={post.url}
+                className="text-sm underline text-blue-600 font-semibold visited:text-blue-800"
+              >
+                {post.url}
+              </a>
+            )}
+          </div>
           {post.post_hint === 'link' && (
-            <a
-              href={post.url}
-              className="text-sm underline text-blue-600 font-semibold visited:text-blue-800"
-            >
-              {post.url}
-            </a>
+            <div className="pt-5 ml-3 min-w-32 max-w-40 flex self-start justify-center">
+              {post.thumbnail === 'default' ? (
+                <FaLink size={50} />
+              ) : (
+                <img src={post.thumbnail} />
+              )}
+            </div>
           )}
+        </div>
+        <div className='ml-16'>
           <PostFooter
             author={post.author}
             createdAt={post.created}
@@ -92,15 +108,6 @@ function Post({ post, isLoading }) {
           />
           {showComments && <Comments />}
         </div>
-        {post.post_hint === 'link' && (
-          <div className="pt-5 ml-3 min-w-32 max-w-40 flex self-start justify-center">
-            {post.thumbnail === 'default' ? (
-              <FaLink size={50} />
-            ) : (
-              <img src={post.thumbnail} />
-            )}
-          </div>
-        )}
       </div>
     </>
   );
