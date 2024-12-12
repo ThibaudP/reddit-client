@@ -5,10 +5,13 @@ import Skeleton from 'react-loading-skeleton';
 import PropTypes from 'prop-types';
 import { FaLink } from 'react-icons/fa';
 import VoteBlock from './VoteBlock';
+import PostFooter from './PostFooter';
+import Comments from '../Comments/Comments';
 
 function Post({ post, isLoading }) {
   const [vote, setVote] = useState(0);
   const [score, setScore] = useState(post.ups);
+  const [showComments, setShowComments] = useState(false);
 
   const upVote = () => {
     if (vote === 0) {
@@ -36,6 +39,12 @@ function Post({ post, isLoading }) {
     }
   };
 
+  const fetchComments = () => {};
+
+  const toggleComments = () => {
+    setShowComments(!showComments);
+  };
+
   return (
     <>
       <div className="p-4 pl-5 pr-10 shadow-xl md:ml-4 md:mr-4 mb-4 sm:ml-0 sm:mr-0 bg-white flex justify-start rounded-lg">
@@ -45,7 +54,7 @@ function Post({ post, isLoading }) {
           score={score}
           vote={vote}
         />
-        <div className="pl-2">
+        <div className="pl-2 w-full">
           <p className="text-sm">
             <Link to={`r/${post.subreddit}`}>r/{post.subreddit}</Link>
           </p>
@@ -75,6 +84,13 @@ function Post({ post, isLoading }) {
               {post.url}
             </a>
           )}
+          <PostFooter
+            author={post.author}
+            createdAt={post.created}
+            numberOfComments={post.num_comments}
+            toggleComments={toggleComments}
+          />
+          {showComments && <Comments />}
         </div>
         {post.post_hint === 'link' && (
           <div className="pt-5 ml-3 min-w-32 max-w-40 flex self-start justify-center">
@@ -107,4 +123,3 @@ Post.propTypes = {
 };
 
 export default Post;
-
