@@ -15,7 +15,7 @@ function SubsList() {
   }, [dispatch]);
 
   return (
-    <div className="bg-white shadow-lg flex mb-5 mr-4 p-5 lg:w-1/4 sm:hidden lg:block xl:block h-fit">
+    <div className="bg-white shadow-lg flex mb-5 mr-4 p-5 lg:w-1/4 sm:hidden lg:block xl:block h-fit rounded-lg">
       <h3 className="font-semibold header-title">Subreddits</h3>
       <ul className="">
         {subsList.map((sub) => (

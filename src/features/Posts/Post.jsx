@@ -38,7 +38,7 @@ function Post({ post, isLoading }) {
 
   return (
     <>
-      <div className="p-4 pl-5 pr-10 shadow-xl md:ml-4 md:mr-4 mb-4 sm:ml-0 sm:mr-0 bg-white flex justify-start">
+      <div className="p-4 pl-5 pr-10 shadow-xl md:ml-4 md:mr-4 mb-4 sm:ml-0 sm:mr-0 bg-white flex justify-start rounded-lg">
         <VoteBlock
           upVote={upVote}
           downVote={downVote}
