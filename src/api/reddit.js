@@ -22,4 +22,15 @@ const fetchPopularSubs = async () => {
   return data;
 };
 
-export { fetchPostsForSubreddit, fetchPopularSubs };
+const fetchCommentsForThread = async (threadPermalink) => {
+  const endpoint = threadPermalink;
+  const url = redditUrl + endpoint + '.json';
+
+  const response = await fetch(url);
+  const json = await response.json()
+  const data = '';
+
+  return data;
+} 
+
+export { fetchPostsForSubreddit, fetchPopularSubs, fetchCommentsForThread };

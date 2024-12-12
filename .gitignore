@@ -25,4 +25,5 @@ dist-ssr
 
 reddit-api-popular.json
 reddit-api-subs.json
+reddit-api-comments.json
 package-lock.json

@@ -19,22 +19,20 @@ function SubsList() {
       <h3 className="font-semibold header-title">Subreddits</h3>
       <ul className="">
         {subsList.map((sub) => (
-          <>
-            <li
-              key={sub.id}
-              className={
-                'p-3 flex justify-start ' +
-                (pathname === sub.url && 'current-sub')
-              }
-            >
-              {sub.icon_img ? (
-                <img src={sub.icon_img} className="h-6 w-6 self-center mr-4" />
-              ) : (
-                <FaReddit className="h-6 w-6 self-center mr-4" />
-              )}
-              <Link to={sub.url}>{sub.display_name_prefixed}</Link>
-            </li>
-          </>
+          <li
+            key={sub.id}
+            className={
+              'p-3 flex justify-start ' +
+              (pathname === sub.url && 'current-sub')
+            }
+          >
+            {sub.icon_img ? (
+              <img src={sub.icon_img} className="h-6 w-6 self-center mr-4" />
+            ) : (
+              <FaReddit className="h-6 w-6 self-center mr-4" />
+            )}
+            <Link to={sub.url}>{sub.display_name_prefixed}</Link>
+          </li>
         ))}
       </ul>
     </div>
