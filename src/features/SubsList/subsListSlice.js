@@ -21,7 +21,7 @@ export const subsListSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(loadPopularSubs.pending, (state, action) => {
+      .addCase(loadPopularSubs.pending, (state) => {
         state.isLoadingSubs = true;
         state.failedToLoadSubs = false;
       })

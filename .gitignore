@@ -24,4 +24,5 @@ dist-ssr
 *.sw?
 
 reddit-api-popular.json
+reddit-api-subs.json
 package-lock.json

@@ -21,7 +21,7 @@ export const postsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(loadPostsForSubreddit.pending, (state, action) => {
+      .addCase(loadPostsForSubreddit.pending, (state) => {
         state.isLoadingPosts = true;
         state.failedToLoadPosts = false;
       })

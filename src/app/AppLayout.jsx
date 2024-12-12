@@ -1,8 +1,5 @@
 import { Link, Outlet } from 'react-router-dom';
-import { fetchPopularSubs } from '../api/reddit';
 import './App.css';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import SubsList from '../features/SubsList/SubsList';
 
 function AppLayout() {

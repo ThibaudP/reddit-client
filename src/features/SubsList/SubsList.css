@@ -1,0 +1,15 @@
+.current-sub {
+    background-color: rgba(255, 87, 0, 0.5);
+    padding-left: 10px;
+    position: relative;
+}
+
+.current-sub::before {
+    content: '';
+    background-color: #FF5700;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 5px;
+    height: 100%;
+}
