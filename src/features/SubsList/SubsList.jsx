@@ -1,13 +1,19 @@
 import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadPopularSubs, selectSubsList } from './subsListSlice';
+import {
+  loadPopularSubs,
+  selectIsLoadingSubsList,
+  selectSubsList,
+} from './subsListSlice';
 import { FaReddit } from 'react-icons/fa';
 import './SubsList.css';
+import Skeleton from 'react-loading-skeleton';
 
 function SubsList() {
   const dispatch = useDispatch();
   const subsList = useSelector(selectSubsList);
+  const isLoadingSubsList = useSelector(selectIsLoadingSubsList);
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -17,7 +23,8 @@ function SubsList() {
   return (
     <div className="bg-white shadow-lg flex mb-5 mr-4 p-5 lg:w-1/4 sm:hidden lg:block xl:block h-fit rounded-lg">
       <h3 className="font-semibold header-title">Subreddits</h3>
-      <ul className="">
+      <ul>
+        {isLoadingSubsList && Array.from({ length: 10 }).map((v, i) => <Skeleton key={i} />)}
         {subsList.map((sub) => (
           <li
             key={sub.id}

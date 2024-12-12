@@ -3,8 +3,8 @@ import { fetchPopularSubs } from '../../api/reddit';
 
 const initialState = {
   subsList: [],
-  isLoadingSubs: false,
-  failedToLoadSubs: false,
+  isLoadingSubsList: false,
+  failedToLoadSubsList: false,
 };
 
 export const loadPopularSubs = createAsyncThunk(
@@ -22,17 +22,17 @@ export const subsListSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(loadPopularSubs.pending, (state) => {
-        state.isLoadingSubs = true;
-        state.failedToLoadSubs = false;
+        state.isLoadingSubsList = true;
+        state.failedToLoadSubsList = false;
       })
       .addCase(loadPopularSubs.fulfilled, (state, action) => {
-        state.isLoadingSubs = false;
-        state.failedToLoadSubs = false;
+        state.isLoadingSubsList = false;
+        state.failedToLoadSubsList = false;
         state.subsList = action.payload;
       })
       .addCase(loadPopularSubs.rejected, (state, action) => {
-        state.isLoadingSubs = false;
-        state.failedToLoadSubs = true;
+        state.isLoadingSubsList = false;
+        state.failedToLoadSubsList = true;
         console.log(action.error);
       });
   },

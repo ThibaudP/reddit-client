@@ -1,3 +1,5 @@
+import TimeAgo from 'react-timeago';
+
 function PostFooter({ author, createdAt, numberOfComments, toggleComments }) {
   const formatDate = (timestamp) => {
     const date = new Date(timestamp * 1000);
@@ -19,7 +21,7 @@ function PostFooter({ author, createdAt, numberOfComments, toggleComments }) {
           u/{author}
         </a>
       </div>
-      <div>{formatDate(createdAt)}</div>
+      <div><TimeAgo date={createdAt * 1000} /></div>
       <div
         className="cursor-pointer hover:text-blue-800"
         onClick={toggleComments}

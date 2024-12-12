@@ -39,8 +39,6 @@ function Post({ post, isLoading }) {
     }
   };
 
-  const fetchComments = () => {};
-
   const toggleComments = () => {
     setShowComments(!showComments);
   };
