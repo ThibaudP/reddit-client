@@ -21,15 +21,14 @@ function Posts() {
     dispatch(loadPostsForSubreddit(sub));
   }, [dispatch, sub]);
 
-
   return (
     <>
       <div className="md:w-full lg:w-3/4">
         {isLoadingPosts &&
-          Array.from({ length: 5 }).map((item, idx) => <PostSkeleton key={idx} />)}
-        {posts && posts.map((post) => (
-          <Post key={post.id} post={post} />
-        ))}
+          Array.from({ length: 5 }).map((item, idx) => (
+            <PostSkeleton key={idx} />
+          ))}
+        {posts && posts.map((post) => <Post key={post.id} post={post} />)}
       </div>
     </>
   );
