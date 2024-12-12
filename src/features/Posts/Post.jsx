@@ -59,7 +59,7 @@ function Post({ post, isLoadingPosts }) {
           />
           <div className="w-full">
             <p className="text-sm">
-              <Link to={`r/${post.subreddit}`}>r/{post.subreddit}</Link>
+              <Link to={`/r/${post.subreddit}`}>r/{post.subreddit}</Link>
             </p>
             <h2 className="text-lg font-semibold">
               <a
