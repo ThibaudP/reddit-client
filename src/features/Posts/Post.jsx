@@ -1,5 +1,5 @@
 import './Posts.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import PropTypes from 'prop-types';
@@ -8,10 +8,14 @@ import VoteBlock from './VoteBlock';
 import PostFooter from './PostFooter';
 import Comments from '../Comments/Comments';
 
-function Post({ post, isLoading }) {
+function Post({ post, isLoadingPosts }) {
   const [vote, setVote] = useState(0);
-  const [score, setScore] = useState(post.ups);
+  const [score, setScore] = useState(0);
   const [showComments, setShowComments] = useState(false);
+
+  useEffect(() => {
+    setScore(post.ups);
+  }, [post]);
 
   const upVote = () => {
     if (vote === 0) {
@@ -104,7 +108,9 @@ function Post({ post, isLoading }) {
             numberOfComments={post.num_comments}
             toggleComments={toggleComments}
           />
-          {showComments && <Comments postPermalink={post.permalink} postId={post.id} />}
+          {showComments && (
+            <Comments postPermalink={post.permalink} postId={post.id} />
+          )}
         </div>
       </div>
     </>
