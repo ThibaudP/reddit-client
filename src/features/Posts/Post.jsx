@@ -99,14 +99,14 @@ function Post({ post, isLoading }) {
             </div>
           )}
         </div>
-        <div className='ml-16'>
+        <div className="ml-16">
           <PostFooter
             author={post.author}
             createdAt={post.created}
             numberOfComments={post.num_comments}
             toggleComments={toggleComments}
           />
-          {showComments && <Comments />}
+          {showComments && <Comments postPermalink={post.permalink} postId={post.id} />}
         </div>
       </div>
     </>

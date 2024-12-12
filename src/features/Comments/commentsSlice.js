@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchCommentsForThread } from '../../api/reddit';
+import { fetchCommentsForPost } from '../../api/reddit';
 
 const initialState = {
   comments: {},
@@ -7,10 +7,10 @@ const initialState = {
   failedToLoadComments: false,
 };
 
-export const loadCommentsForThread = createAsyncThunk(
-  'comments/loadCommentsForThread',
-  async (thread) => {
-    const comments = fetchCommentsForThread(thread);
+export const loadCommentsForPost = createAsyncThunk(
+  'comments/loadCommentsForPost',
+  async (postPermalink) => {
+    const comments = fetchCommentsForPost(postPermalink);
     return comments;
   }
 );
@@ -21,16 +21,16 @@ export const commentsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(loadCommentsForThread.pending, (state) => {
+      .addCase(loadCommentsForPost.pending, (state) => {
         state.isLoadingComments = true;
         state.failedToLoadComments = false;
       })
-      .addCase(loadCommentsForThread.fulfilled, (state, action) => {
+      .addCase(loadCommentsForPost.fulfilled, (state, action) => {
         state.isLoadingComments = false;
         state.failedToLoadComments = false;
-        state.comments[action.payload.id] = action.payload;
+        state.comments[action.payload[0].parent_id.slice(3)] = action.payload;
       })
-      .addCase(loadCommentsForThread.rejected, (state, action) => {
+      .addCase(loadCommentsForPost.rejected, (state, action) => {
         state.isLoadingComments = false;
         state.failedToLoadComments = true;
         console.log(action.error);
