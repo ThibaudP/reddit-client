@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import TimeAgo from 'react-timeago';
 
 function Comment({ comment }) {
@@ -10,11 +11,19 @@ function Comment({ comment }) {
           <TimeAgo date={dateCreated} />
         </p>
       </div>
-      <div className=''>
+      <div>
         <p>{comment.body}</p>
       </div>
     </div>
   );
 }
+
+Comment.propTypes = {
+  comment: PropTypes.shape({
+    created: PropTypes.number,
+    author: PropTypes.string,
+    body: PropTypes.string,
+  }),
+};
 
 export default Comment;

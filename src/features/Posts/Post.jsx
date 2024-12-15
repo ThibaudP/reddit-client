@@ -1,14 +1,13 @@
 import './Posts.css';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Skeleton from 'react-loading-skeleton';
 import PropTypes from 'prop-types';
 import { FaLink } from 'react-icons/fa';
 import VoteBlock from './VoteBlock';
 import PostFooter from './PostFooter';
 import Comments from '../Comments/Comments';
 
-function Post({ post, isLoadingPosts }) {
+function Post({ post }) {
   const [vote, setVote] = useState(0);
   const [score, setScore] = useState(0);
   const [showComments, setShowComments] = useState(false);
@@ -130,6 +129,10 @@ Post.propTypes = {
     post_hint: PropTypes.string,
     permalink: PropTypes.string,
     ups: PropTypes.number,
+    author: PropTypes.string,
+    created: PropTypes.number,
+    num_comments: PropTypes.number,
+    id: PropTypes.string,
   }),
 };
 
