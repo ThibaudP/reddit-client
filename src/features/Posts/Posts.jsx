@@ -33,7 +33,7 @@ function Posts() {
 
     return posts.filter((post) => {
       return (
-        post.selftext.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         post.selftext.toLowerCase().includes(searchTerm.toLowerCase())
       );
     });
